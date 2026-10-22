@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./App.css";
 
-const API = "http://localhost:5000/api";
+const API = "https://college-complaint-management-system-yzh8.onrender.com/api";
 
 function Home() {
   const navigate = useNavigate();
