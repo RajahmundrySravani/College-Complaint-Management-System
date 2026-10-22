@@ -1,0 +1,760 @@
+
+/* ========================================
+   GLOBAL STYLES
+======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Arial, sans-serif;
+  color: #172033;
+  background: #f3f6fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --primary: #183b68;
+  --primary-light: #e0ecfa;
+  --accent: #1769aa;
+  --text: #172033;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --surface: #ffffff;
+  --success: #166534;
+  --success-bg: #dcfce7;
+  --warning: #92400e;
+  --warning-bg: #fef3c7;
+  --info: #1d4ed8;
+  --info-bg: #dbeafe;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f3f6fb;
+  color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: none;
+  border-radius: 9px;
+  padding: 12px 18px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #12558b;
+  box-shadow: 0 4px 12px #1769aa25;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondary {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.secondary:hover:not(:disabled) {
+  background: #cbdff7;
+}
+
+/* ========================================
+   STUDENT PORTAL AND ADMIN LAYOUT
+======================================== */
+
+.app {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #183b68, #245a91);
+  color: #ffffff;
+  padding: 38px 32px;
+  border-radius: 20px;
+  margin-bottom: 26px;
+  text-align: center;
+  box-shadow: 0 10px 30px #183b681a;
+}
+
+.hero h1 {
+  color: #ffffff;
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 12px 0;
+  line-height: 1.2;
+}
+
+.hero p {
+  line-height: 1.7;
+}
+
+.hero p:last-of-type {
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #bfdbfe;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   PANELS
+======================================== */
+
+.panel {
+  background: var(--surface);
+  padding: 28px;
+  border: 1px solid #e8edf5;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px #17203308;
+  margin-bottom: 26px;
+}
+
+.panel h2,
+.complaints h2 {
+  color: var(--primary);
+  margin-top: 0;
+  margin-bottom: 22px;
+  font-size: 23px;
+  line-height: 1.3;
+}
+
+/* ========================================
+   STATISTICS CARDS
+======================================== */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0 28px;
+}
+
+.stat-card {
+  min-width: 0;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px #1720330d;
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.stat-card strong {
+  color: var(--primary);
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+/* ========================================
+   FORMS AND INPUTS
+======================================== */
+
+form {
+  display: grid;
+  gap: 18px;
+}
+
+label {
+  display: grid;
+  gap: 9px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #ffffff;
+  color: var(--text);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+select {
+  min-height: 46px;
+  cursor: pointer;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px #1769aa1a;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* ========================================
+   MESSAGES
+======================================== */
+
+.message {
+  margin: 18px 0 0;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.message.success {
+  color: var(--success);
+  background: var(--success-bg);
+  border: 1px solid #bbf7d0;
+}
+
+.message.error {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid #fecaca;
+}
+
+.message.info {
+  color: var(--info);
+  background: var(--info-bg);
+  border: 1px solid #bfdbfe;
+}
+
+/* ========================================
+   COMPLAINT SECTION
+======================================== */
+
+.complaints {
+  margin-top: 32px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   COMPLAINT CARDS
+======================================== */
+
+.complaint-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  background: var(--surface);
+  padding: 25px;
+  border: 1px solid #e5eaf2;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px #17203308;
+  margin: 16px 0;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.complaint-card:hover {
+  box-shadow: 0 10px 28px #1720330d;
+}
+
+.complaint-content {
+  width: 100%;
+  min-width: 0;
+}
+
+.complaint-card h3 {
+  color: var(--primary);
+  margin: 0 0 14px;
+  font-size: 19px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.complaint-card p {
+  color: var(--text);
+  line-height: 1.7;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+
+.complaint-card small {
+  display: inline-block;
+  color: var(--muted);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* Student information */
+
+.student-details {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 18px 0 !important;
+}
+
+.student-details p {
+  margin: 7px 0;
+  font-size: 14px;
+}
+
+.student-details strong {
+  color: var(--primary);
+}
+
+/* ========================================
+   STATUS BADGES
+======================================== */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  background: var(--warning-bg);
+  color: var(--warning);
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.status.Pending {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.status.In-Progress {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+.status.Resolved {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+/* ========================================
+   AUTHENTICATION PAGES
+======================================== */
+
+.auth-page {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 35px 20px;
+}
+
+.auth-page .panel {
+  margin-top: 20px;
+}
+
+/* ========================================
+   HOME PAGE
+======================================== */
+
+.home-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 24px 24px;
+}
+
+.home-hero {
+  padding: 48px 28px;
+  border-radius: 22px;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, #183b68, #28639a);
+  box-shadow: 0 12px 30px #183b681a;
+}
+
+.home-hero h1 {
+  max-width: 800px;
+  margin: 14px auto;
+  color: #ffffff;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2;
+}
+
+.home-hero > p:last-child {
+  max-width: 680px;
+  margin: 14px auto 0;
+  color: #e5efff;
+  line-height: 1.8;
+}
+
+.login-section {
+  padding: 38px 0 20px;
+}
+
+.login-heading {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-heading h2 {
+  margin: 0 0 10px;
+  color: #183b68;
+  font-size: 29px;
+}
+
+.login-heading p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.login-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.login-card {
+  min-width: 0;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 8px 28px #1720330a;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px #17203310;
+}
+
+.login-card h2 {
+  margin: 15px 0 8px;
+  color: #183b68;
+  font-size: 24px;
+}
+
+.login-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 15px;
+  background: #e0ecfa;
+  font-size: 28px;
+}
+
+.admin-login .login-icon {
+  background: #dcfce7;
+}
+
+.login-description {
+  min-height: 48px;
+  margin: 0 0 22px;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.login-card form {
+  gap: 4px;
+}
+
+.login-card label {
+  margin: 10px 0;
+}
+
+.login-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+}
+
+.student-login .login-button {
+  background: #1769aa;
+}
+
+.student-login .login-button:hover:not(:disabled) {
+  background: #12558b;
+}
+
+.admin-login .login-button {
+  background: #187447;
+}
+
+.admin-login .login-button:hover:not(:disabled) {
+  background: #125c38;
+}
+
+.register-link,
+.admin-note {
+  margin: 22px 0 0;
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.register-link a {
+  color: #1769aa;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.home-footer {
+  padding: 16px 0;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 800px) {
+  .app {
+    max-width: 700px;
+    padding: 24px 18px 45px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .panel {
+    padding: 24px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+  .home-page {
+    padding: 16px 12px 20px;
+  }
+
+  .home-hero {
+    padding: 34px 20px;
+    border-radius: 16px;
+  }
+
+  .login-section {
+    padding-top: 30px;
+  }
+
+  .login-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .login-card {
+    padding: 24px 20px;
+  }
+
+  .login-description {
+    min-height: auto;
+  }
+
+  .login-heading h2 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 550px) {
+  .app {
+    padding: 18px 12px 35px;
+  }
+
+  .hero {
+    padding: 27px 18px;
+    border-radius: 15px;
+  }
+
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .panel {
+    padding: 19px 16px;
+    border-radius: 14px;
+  }
+
+  .panel h2,
+  .complaints h2 {
+    font-size: 21px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 18px 0 24px;
+  }
+
+  .stat-card {
+    padding: 16px 13px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+
+  .stat-card span {
+    font-size: 12px;
+  }
+
+  .stat-card strong {
+    font-size: 29px;
+  }
+
+  .complaint-card {
+    padding: 19px 16px;
+    border-radius: 13px;
+  }
+
+  .complaint-card h3 {
+    font-size: 18px;
+  }
+
+  .student-details {
+    padding: 10px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  button {
+    max-width: 100%;
+  }
+}
+
+/* ========================================
+   VERY SMALL SCREENS
+======================================== */
+
+@media (max-width: 360px) {
+  .app {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .stat-card {
+    padding: 13px 10px;
+  }
+
+  .stat-card strong {
+    font-size: 25px;
+  }
+
+  .login-card {
+    padding: 20px 15px;
+  }
+}
