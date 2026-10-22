@@ -32,9 +32,29 @@ const ALLOWED_STATUSES = [
 // Middleware
 // --------------------------------------------------
 
+// Render runs behind a proxy. Trust the proxy so Express
+// can correctly detect HTTPS when setting secure cookies.
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
+const allowedOrigins = [
+  "https://college-complaint-management-system-hzze.onrender.com",
+  "http://localhost:5175",
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5175",
+    origin: (origin, callback) => {
+      // Allow requests without an Origin header, such as
+      // direct health checks, and known frontend origins.
+      if (!origin || allowedOrigins.includes(origin) ||
+          origin === process.env.FRONTEND_URL) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Origin not allowed by CORS"));
+    },
     credentials: true,
   })
 );
@@ -49,8 +69,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
       maxAge: 1000 * 60 * 60 * 2,
     },
   })
@@ -294,7 +314,7 @@ app.post("/api/auth/logout", requireAuth, (req, res, next) => {
 
     res.clearCookie("campus.sid", {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
       secure: process.env.NODE_ENV === "production",
     });
 
