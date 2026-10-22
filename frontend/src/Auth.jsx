@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 
-const AUTH_API = "http://localhost:5000/api/auth";
+const AUTH_API = "https://college-complaint-management-system-yzh8.onrender.com/api/auth";
 
 function Auth({ mode = "login" }) {
   const isRegister = mode === "register";
